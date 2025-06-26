@@ -1,10 +1,21 @@
-<h1>Lista de Projetos</h1>
-<a href="{% url 'cadastrar_projeto' %}">Novo Projeto</a>
-<ul>
+{% extends 'tarefas/base.html' %}
+{% block title %}Projetos{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mt-4 mb-3">
+    <h1>Projetos</h1>
+    <a href="{% url 'cadastrar_projeto' %}" class="btn btn-primary">+ Novo Projeto</a>
+</div>
+<ul class="list-group">
   {% for projeto in projetos %}
-    <li>{{ projeto.nome }} - {{ projeto.descricao }}</li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+            <strong>{{ projeto.nome }}</strong><br>
+            <small>{{ projeto.descricao }}</small>
+        </div>
+        <a href="{% url 'editar_projeto' projeto.id %}" class="btn btn-sm btn-outline-primary">Editar</a>
+    </li>
   {% empty %}
-    <li>Nenhum projeto cadastrado.</li>
+    <li class="list-group-item">Nenhum projeto cadastrado.</li>
   {% endfor %}
 </ul>
-<a href="{% url 'lista_tarefas' %}">Ver Tarefas</a>
+{% endblock %}

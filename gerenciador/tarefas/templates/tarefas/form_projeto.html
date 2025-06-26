@@ -1,7 +1,13 @@
-<h1>Cadastrar Projeto</h1>
-<form method="POST">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Salvar</button>
+{% extends 'tarefas/base.html' %}
+{% block title %}{% if editar %}Editar Projeto{% else %}Novo Projeto{% endif %}{% endblock %}
+{% block content %}
+<h2>{% if editar %}Editar Projeto{% else %}Novo Projeto{% endif %}</h2>
+<form method="POST" class="mt-3">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">
+        {% if editar %}Atualizar{% else %}Salvar{% endif %}
+    </button>
+    <a href="{% url 'lista_projetos' %}" class="btn btn-secondary">Cancelar</a>
 </form>
-<a href="{% url 'lista_projetos' %}">Voltar</a>
+{% endblock %}

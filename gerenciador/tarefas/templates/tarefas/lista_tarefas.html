@@ -1,12 +1,22 @@
-<h1>Lista de Tarefas</h1>
-<a href="{% url 'cadastrar_tarefa' %}">Nova Tarefa</a>
-<ul>
+{% extends 'tarefas/base.html' %}
+{% block title %}Tarefas{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mt-4 mb-3">
+    <h1>Tarefas</h1>
+    <a href="{% url 'cadastrar_tarefa' %}" class="btn btn-primary">+ Nova Tarefa</a>
+</div>
+<ul class="list-group">
   {% for tarefa in tarefas %}
-    <li>
-      {{ tarefa.titulo }} — Projeto: {{ tarefa.projeto.nome }} — Concluída: {{ tarefa.concluida }}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+            <strong>{{ tarefa.titulo }}</strong><br>
+            <small>Projeto: {{ tarefa.projeto.nome }}<br>
+            Criada em: {{ tarefa.data_criacao|date:"d/m/Y H:i" }}</small>
+        </div>
+        <a href="{% url 'editar_tarefa' tarefa.id %}" class="btn btn-sm btn-outline-primary">Editar</a>
     </li>
   {% empty %}
-    <li>Nenhuma tarefa cadastrada.</li>
+    <li class="list-group-item">Nenhuma tarefa cadastrada.</li>
   {% endfor %}
 </ul>
-<a href="{% url 'lista_projetos' %}">Ver Projetos</a>
+{% endblock %}
