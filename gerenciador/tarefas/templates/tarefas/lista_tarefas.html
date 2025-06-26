@@ -1,0 +1,12 @@
+<h1>Lista de Tarefas</h1>
+<a href="{% url 'cadastrar_tarefa' %}">Nova Tarefa</a>
+<ul>
+  {% for tarefa in tarefas %}
+    <li>
+      {{ tarefa.titulo }} — Projeto: {{ tarefa.projeto.nome }} — Concluída: {{ tarefa.concluida }}
+    </li>
+  {% empty %}
+    <li>Nenhuma tarefa cadastrada.</li>
+  {% endfor %}
+</ul>
+<a href="{% url 'lista_projetos' %}">Ver Projetos</a>

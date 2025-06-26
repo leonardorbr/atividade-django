@@ -1,0 +1,10 @@
+<h1>Lista de Projetos</h1>
+<a href="{% url 'cadastrar_projeto' %}">Novo Projeto</a>
+<ul>
+  {% for projeto in projetos %}
+    <li>{{ projeto.nome }} - {{ projeto.descricao }}</li>
+  {% empty %}
+    <li>Nenhum projeto cadastrado.</li>
+  {% endfor %}
+</ul>
+<a href="{% url 'lista_tarefas' %}">Ver Tarefas</a>
